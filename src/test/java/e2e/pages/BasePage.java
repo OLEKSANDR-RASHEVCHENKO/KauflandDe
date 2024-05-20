@@ -16,6 +16,10 @@ import java.nio.file.StandardCopyOption;
 
 public class BasePage {
     public WebDriver driver;
+    public String getCurrerntUrl(){
+        String url=driver.getCurrentUrl();
+        return url;
+    }
 
     public BasePage(WebDriver driver) {
         this.driver = driver;

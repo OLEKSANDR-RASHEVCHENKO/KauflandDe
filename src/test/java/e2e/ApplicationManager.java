@@ -12,7 +12,7 @@ public class ApplicationManager {
     public void init(){
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-        driver.get("https://www.stepstone.de");
+        driver.get("https://www.kaufland.de/?referredFromLogin");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
