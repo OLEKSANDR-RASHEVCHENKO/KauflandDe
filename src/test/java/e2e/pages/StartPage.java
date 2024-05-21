@@ -1,9 +1,13 @@
 package e2e.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
+
+import java.time.Duration;
+import java.util.List;
 
 public class StartPage extends BasePage{
     public StartPage(WebDriver driver) {
@@ -18,6 +22,9 @@ public class StartPage extends BasePage{
     WebElement accountButton;
     @FindBy(xpath = "//*[@id='onetrust-accept-btn-handler']")
     WebElement cookies;
+
+    @FindBy(xpath = "//*[@class='rh-menu-toggle__burger']")
+    WebElement alleKategorienButton;
 
     public void waitForLoadingStartPage(){
         getWait().forVisibility(headerOnStartPage);
@@ -45,6 +52,22 @@ public class StartPage extends BasePage{
     }
     public void cookiesZustimmen(){
         cookies.click();
+    }
+    public void selectOneMenuFromDropDown(String menu){
+        alleKategorienButton.click();
+        List<WebElement> dropMenu=driver.findElements(By.xpath("//*[@class='rh-menu__top-tile']//*[@class='rh-menu-tile']//span[text()]"));
+        System.out.println(dropMenu.size());
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        for (int i=0;i<dropMenu.size();i++){
+            String text = dropMenu.get(i).getText();
+            if (text.equals(menu)){
+                dropMenu.get(i).click();
+                break;
+            }
+        }
+    }
+    public void selectSecondDropDownMenu(){
+        driver.findElement(By.xpath("//*[@class='rh-menu-overlay__category']")).click();
     }
 
 }

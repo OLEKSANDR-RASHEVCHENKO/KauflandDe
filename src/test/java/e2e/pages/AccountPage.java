@@ -11,13 +11,13 @@ public class AccountPage extends BasePage{
     }
 
     @FindBy(xpath = "//*[@id='navigation-logout']")
-    WebElement anmeldenButton;
+    WebElement abmeldenButton;
     public void waitForLoadingAccountPage(){
-        getWait().forVisibility(anmeldenButton);
-        Assert.assertTrue(anmeldenButton.isDisplayed());
+        getWait().forVisibility(abmeldenButton);
+        Assert.assertTrue(abmeldenButton.isDisplayed());
     }
 
     public void clickOnAnmeldenButton(){
-        anmeldenButton.click();
+        abmeldenButton.click();
     }
 }
