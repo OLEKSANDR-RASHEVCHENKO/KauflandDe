@@ -13,23 +13,45 @@ public class CategoryPage extends BasePage{
     public CategoryPage(WebDriver driver) {
         super(driver);
     }
-    @FindBy(xpath = "//*[@class='rd-category-pages__headline']")
+    @FindBy(xpath = "//*[@class='result-header']//*[@class='title']")
     WebElement header;
+
+
     public void waitForLoadingCategoryPage(){
         getWait().forVisibility(header);
         Assert.assertTrue(header.isDisplayed());
     }
-    public void selectOneFromCategoryPage(String category){
-        List<WebElement> listOfCategory=driver.findElements(By.xpath("//*[@id='recommender-categories']//*[@class='rd-tile__title']"));
-        for (int i = 0;i<listOfCategory.size();i++){
-            String text = listOfCategory.get(i).getText();
-            if (text.equals(category)){
-                listOfCategory.get(i).click();
+    public void selectFilterOnCategoryPage(String filter){
+        List<WebElement> listOfFilters=driver.findElements(By.xpath("//*[@class='filters main-content__filters--desktop']//*[@class='filter__list']//*[@class='filter__list-item']"));
+        for (int i = 0;i<listOfFilters.size();i++){
+            String text = listOfFilters.get(i).getText();
+            System.out.println(text);
+            if (text.equals(filter)){
+                listOfFilters.get(i).click();
                 break;
             }
         }
     }
+    public void sortierenNachDropDown(String sortCategory){
+        driver.findElement(By.xpath("//*[@class='rd-select']")).click();
+        List<WebElement> listOfSotr=driver.findElements(By.xpath("//*[@class='rd-select']//option"));
+        for (int i = 0;i<listOfSotr.size();i++){
+            String sotr = listOfSotr.get(i).getText();
+            if (sotr.equals(sortCategory)){
+                listOfSotr.get(i).click();
+                break;
+            }
+        }
+
+    }
+
+
+    public String getTextFromTitle(){
+        String textFromTitle=header.getText();
+        return textFromTitle;
+    }
     public void goBack(){
         driver.navigate().back();
     }
+
 }

@@ -1,7 +1,6 @@
 package e2e.tests;
 
-import e2e.pages.AccountPage;
-import e2e.pages.CategoryPage;
+import e2e.pages.CategorysPage;
 import e2e.pages.LoginPage;
 import e2e.pages.StartPage;
 import org.testng.Assert;
@@ -10,7 +9,7 @@ import org.testng.annotations.Test;
 public class SelectCategoryTest extends BaseTest{
     StartPage startPage;
     LoginPage loginPage;
-    CategoryPage categoryPage;
+    CategorysPage categoryPage;
     @Test
     public void userCanSelectOnCategory(){
         String email = "rashevchenkoo@gmail.com";
@@ -32,7 +31,7 @@ public class SelectCategoryTest extends BaseTest{
         Assert.assertEquals(actualName,anmeldenButtonAfterLogin);
         startPage.selectOneMenuFromDropDown(electronik);
         startPage.selectSecondDropDownMenu();
-        categoryPage = new CategoryPage(app.driver);
+        categoryPage = new CategorysPage(app.driver);
         categoryPage.waitForLoadingCategoryPage();
         categoryPage.selectOneFromCategoryPage(spielkonsole);
         categoryPage.goBack();
