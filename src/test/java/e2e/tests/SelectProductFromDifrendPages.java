@@ -1,20 +1,19 @@
 package e2e.tests;
 
-import e2e.pages.CategoryPage;
-import e2e.pages.CategorysPage;
-import e2e.pages.LoginPage;
-import e2e.pages.StartPage;
+import e2e.pages.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class SelectFilterTest extends BaseTest {
+public class SelectProductFromDifrendPages extends BaseTest{
     StartPage startPage;
     LoginPage loginPage;
     CategorysPage categorysPage;
     CategoryPage categoryPage;
+    ArticlePage articlePage;
+    MeinarenkorbPage meinarenkorbPage;
 
     @Test
-    public void userCanSelectByFilters() throws InterruptedException {
+    public void userCanSelectProductsFromDiffrendPages() throws InterruptedException {
         String email = "rashevchenkoo@gmail.com";
         String password = "Gazmanov1234";
         String anmeldenButtonAfterLogin = "OLEKSANDR";
@@ -45,6 +44,7 @@ public class SelectFilterTest extends BaseTest {
         categoryPage.waitForLoadingCategoryPage();
         categoryPage.selectFilterOnCategoryPage(color);
         categoryPage.waitForLoadingCategoryPage();
+        categoryPage.clickOnOneFromArticle(articleIndex);
         Thread.sleep(5000);
         categoryPage.goBack();
         categoryPage.waitForLoadingCategoryPage();

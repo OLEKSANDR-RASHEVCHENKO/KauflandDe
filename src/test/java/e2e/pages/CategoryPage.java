@@ -16,6 +16,36 @@ public class CategoryPage extends BasePage{
     @FindBy(xpath = "//*[@class='result-header']//*[@class='title']")
     WebElement header;
 
+    public void clickOnOneFromArticle(int index){
+        List<WebElement> listOfArticle = driver.findElements(By.xpath("//*[@class='results results--list']//article"));
+        WebElement articleToBeSelect=listOfArticle.get(index);
+        articleToBeSelect.click();
+    }
+
+    public void navigateToPage(int pageIndex) throws InterruptedException {
+        boolean pageVisible = false;
+        while (!pageVisible) {
+            try {
+                WebElement pageButton = driver.findElement(By.xpath("//button[normalize-space()='"+pageIndex+"']"));
+                System.out.println("NumberOfPAge"+pageButton.getText());
+                pageButton.click();
+                if (pageButton.isDisplayed()) {
+                    pageVisible = true;
+                }
+            } catch (Exception e) {
+                List<WebElement> visiblePages = driver.findElements(By.xpath("//*[@class='rd-pagination']//button"));
+                if (visiblePages.size() > 2) {
+                    WebElement secondLastVisiblePageButton = visiblePages.get(visiblePages.size() - 3);
+                    secondLastVisiblePageButton.click();
+                    Thread.sleep(2000);
+                } else {
+                    System.out.println("Не удалось найти предпоследнюю видимую кнопку.");
+                    break;
+                }
+            }
+        }
+    }
+
 
     public void waitForLoadingCategoryPage(){
         getWait().forVisibility(header);
