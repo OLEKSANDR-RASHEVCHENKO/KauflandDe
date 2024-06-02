@@ -20,6 +20,8 @@ public class ArticlePage extends BasePage{
     WebElement zumWarenkorbButton;
     @FindBy(xpath = "//span[normalize-space()='Zur Kasse']")
     WebElement zurKasseButton;
+    @FindBy(xpath = "//span[@class='rd-add-to-cart-overlay__close-icon svg-icon']//*[name()='svg']")
+    WebElement closeWindow;
     public void waitForLoading(){
         getWait().forVisibility(header);
         Assert.assertTrue(header.isDisplayed());
@@ -51,6 +53,12 @@ public class ArticlePage extends BasePage{
     }
     public void clickOnZurKasseButton(){
         zurKasseButton.click();
+    }
+    public void closeWindow(){
+        closeWindow.click();
+    }
+    public void goBack(){
+        driver.navigate().back();
     }
 
 

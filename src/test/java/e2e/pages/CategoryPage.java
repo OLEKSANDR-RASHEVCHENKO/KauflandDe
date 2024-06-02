@@ -15,6 +15,8 @@ public class CategoryPage extends BasePage{
     }
     @FindBy(xpath = "//*[@class='result-header']//*[@class='title']")
     WebElement header;
+    @FindBy(xpath = "//div[@class='rd-cart-widget__button rd-cart-widget__button--desktop rd-cart-widget__button--hasProducts']")
+    WebElement warenkorb;
 
     public void clickOnOneFromArticle(int index){
         List<WebElement> listOfArticle = driver.findElements(By.xpath("//*[@class='results results--list']//article"));
@@ -79,6 +81,9 @@ public class CategoryPage extends BasePage{
     public String getTextFromTitle(){
         String textFromTitle=header.getText();
         return textFromTitle;
+    }
+    public void clickOnWarenkorb(){
+        warenkorb.click();
     }
     public void goBack(){
         driver.navigate().back();

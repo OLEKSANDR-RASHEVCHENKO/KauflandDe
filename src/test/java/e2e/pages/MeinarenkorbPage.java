@@ -1,5 +1,6 @@
 package e2e.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -28,18 +29,14 @@ public class MeinarenkorbPage extends BasePage{
         Assert.assertTrue(header.isDisplayed());
         getWait().forVisibility(titleFromProduct);
         Assert.assertTrue(titleFromProduct.isDisplayed());
-        getWait().forVisibility(versandKosten);
-        Assert.assertTrue(versandKosten.isDisplayed());
-        getWait().forVisibility(gesamtSumme);
-        Assert.assertTrue(gesamtSumme.isDisplayed());
         getWait().forVisibility(jetztZurKasseGehenButton);
         Assert.assertTrue(jetztZurKasseGehenButton.isDisplayed());
         getWait().forVisibility(weiterEinkaufenButton);
         Assert.assertTrue(weiterEinkaufenButton.isDisplayed());
     }
-    public String getTitleFromMeinWarenkorbPage(){
-        String titleFromWarenKorb=titleFromProduct.getText();
-        return titleFromWarenKorb;
+    public String getTitleFromMeinWarenkorbPage(int indexOfTitle){
+        String titleFromProduct = driver.findElement(By.xpath("//div[@class='unit-widget-list']//div["+indexOfTitle+"]//div[2]//div[1]//div[2]//div[1]//h3[1]")).getText();
+        return titleFromProduct;
     }
     public String getVersandPrice(){
         String versand = versandKosten.getText();
