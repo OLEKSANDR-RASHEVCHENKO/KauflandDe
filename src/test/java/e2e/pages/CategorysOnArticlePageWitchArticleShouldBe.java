@@ -8,9 +8,9 @@ import org.testng.Assert;
 
 import java.util.List;
 
-public class CategorysPage extends BasePage{
+public class CategorysOnArticlePageWitchArticleShouldBe extends BasePage{
 
-    public CategorysPage(WebDriver driver) {
+    public CategorysOnArticlePageWitchArticleShouldBe(WebDriver driver) {
         super(driver);
     }
     @FindBy(xpath = "//*[@class='rd-category-pages__headline']")

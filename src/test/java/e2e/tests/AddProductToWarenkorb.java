@@ -4,12 +4,10 @@ import e2e.pages.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static e2e.tests.BaseTest.app;
-
 public class AddProductToWarenkorb extends BaseTest{
     StartPage startPage;
     LoginPage loginPage;
-    CategorysPage categorysPage;
+    CategorysOnArticlePageWitchArticleShouldBe categorysOnArticlePageWitchArticleShouldBe;
     CategoryPage categoryPage;
     ArticlePage articlePage;
     MeinarenkorbPage meinarenkorbPage;
@@ -35,9 +33,9 @@ public class AddProductToWarenkorb extends BaseTest{
         Assert.assertEquals(actualName, anmeldenButtonAfterLogin);
         startPage.selectOneMenuFromDropDown(electronik);
         startPage.selectSecondDropDownMenu();
-        categorysPage = new CategorysPage(app.driver);
-        categorysPage.waitForLoadingCategoryPage();
-        categorysPage.selectOneFromCategoryPage(phone);
+        categorysOnArticlePageWitchArticleShouldBe = new CategorysOnArticlePageWitchArticleShouldBe(app.driver);
+        categorysOnArticlePageWitchArticleShouldBe.waitForLoadingCategoryPage();
+        categorysOnArticlePageWitchArticleShouldBe.selectOneFromCategoryPage(phone);
         categoryPage = new CategoryPage(app.driver);
         categoryPage.waitForLoadingCategoryPage();
         categoryPage.clickOnOneFromArticle(3);

@@ -3,6 +3,7 @@ package e2e.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
@@ -64,6 +65,19 @@ public class CategoryPage extends BasePage{
             }
         }
     }
+    public void hoverOverToOnTheCategory(String filter) {
+        List<WebElement> listOfFilters = driver.findElements(By.xpath("//*[@class='filters main-content__filters--desktop']//*[@class='filter__list']//*[@class='filter__list-item']"));
+        for (int i = 0; i < listOfFilters.size(); i++) {
+            String text = listOfFilters.get(i).getText();
+            System.out.println(text);
+            if (text.equals(filter)) {
+                Actions actions = new Actions(driver);
+                actions.moveToElement(listOfFilters.get(i)).click().perform();
+                break;
+            }
+        }
+    }
+
     public void sortierenNachDropDown(String sortCategory){
         driver.findElement(By.xpath("//*[@class='rd-select']")).click();
         List<WebElement> listOfSotr=driver.findElements(By.xpath("//*[@class='rd-select']//option"));

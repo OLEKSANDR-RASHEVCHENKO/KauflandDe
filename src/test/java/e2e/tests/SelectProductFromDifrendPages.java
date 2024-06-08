@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 public class SelectProductFromDifrendPages extends BaseTest{
     StartPage startPage;
     LoginPage loginPage;
-    CategorysPage categorysPage;
+    CategorysOnArticlePageWitchArticleShouldBe categorysOnArticlePageWitchArticleShouldBe;
     CategoryPage categoryPage;
     ArticlePage articlePage;
     MeinarenkorbPage meinarenkorbPage;
@@ -22,7 +22,7 @@ public class SelectProductFromDifrendPages extends BaseTest{
         String color = "Weiß";
         String smartwatches = "Smartwatches";
         String höchsterPreis = "Höchster Preis";
-        int articleIndex = 10;
+        int articleIndex = 15;
 
         startPage = new StartPage(app.driver);
         startPage.waitForLoadingStartPage();
@@ -37,9 +37,9 @@ public class SelectProductFromDifrendPages extends BaseTest{
         Assert.assertEquals(actualName, anmeldenButtonAfterLogin);
         startPage.selectOneMenuFromDropDown(electronik);
         startPage.selectSecondDropDownMenu();
-        categorysPage = new CategorysPage(app.driver);
-        categorysPage.waitForLoadingCategoryPage();
-        categorysPage.selectOneFromCategoryPage(phone);
+        categorysOnArticlePageWitchArticleShouldBe = new CategorysOnArticlePageWitchArticleShouldBe(app.driver);
+        categorysOnArticlePageWitchArticleShouldBe.waitForLoadingCategoryPage();
+        categorysOnArticlePageWitchArticleShouldBe.selectOneFromCategoryPage(phone);
         categoryPage = new CategoryPage(app.driver);
         categoryPage.waitForLoadingCategoryPage();
         categoryPage.selectFilterOnCategoryPage(color);
@@ -48,6 +48,8 @@ public class SelectProductFromDifrendPages extends BaseTest{
         Thread.sleep(5000);
         categoryPage.goBack();
         categoryPage.waitForLoadingCategoryPage();
+        Thread.sleep(5000);
+        categoryPage.hoverOverToOnTheCategory(smartwatches);
         categoryPage.selectFilterOnCategoryPage(smartwatches);
         Thread.sleep(10000);
         categoryPage.waitForLoadingCategoryPage();

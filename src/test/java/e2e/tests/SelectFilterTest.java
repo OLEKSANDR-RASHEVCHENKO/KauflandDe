@@ -1,7 +1,7 @@
 package e2e.tests;
 
 import e2e.pages.CategoryPage;
-import e2e.pages.CategorysPage;
+import e2e.pages.CategorysOnArticlePageWitchArticleShouldBe;
 import e2e.pages.LoginPage;
 import e2e.pages.StartPage;
 import org.testng.Assert;
@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 public class SelectFilterTest extends BaseTest {
     StartPage startPage;
     LoginPage loginPage;
-    CategorysPage categorysPage;
+    CategorysOnArticlePageWitchArticleShouldBe categorysOnArticlePageWitchArticleShouldBe;
     CategoryPage categoryPage;
 
     @Test
@@ -38,9 +38,9 @@ public class SelectFilterTest extends BaseTest {
         Assert.assertEquals(actualName, anmeldenButtonAfterLogin);
         startPage.selectOneMenuFromDropDown(electronik);
         startPage.selectSecondDropDownMenu();
-        categorysPage = new CategorysPage(app.driver);
-        categorysPage.waitForLoadingCategoryPage();
-        categorysPage.selectOneFromCategoryPage(phone);
+        categorysOnArticlePageWitchArticleShouldBe = new CategorysOnArticlePageWitchArticleShouldBe(app.driver);
+        categorysOnArticlePageWitchArticleShouldBe.waitForLoadingCategoryPage();
+        categorysOnArticlePageWitchArticleShouldBe.selectOneFromCategoryPage(phone);
         categoryPage = new CategoryPage(app.driver);
         categoryPage.waitForLoadingCategoryPage();
         categoryPage.selectFilterOnCategoryPage(color);
