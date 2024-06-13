@@ -18,7 +18,6 @@ public class AddProductToWarenkorb extends BaseTest{
         String anmeldenButtonAfterLogin = "OLEKSANDR";
         String electronik = "Elektronik & Computer";
         String phone = "Handys";
-        int pageIndex = 5;
 
         startPage = new StartPage(app.driver);
         startPage.waitForLoadingStartPage();
@@ -38,16 +37,18 @@ public class AddProductToWarenkorb extends BaseTest{
         categorysOnArticlePageWitchArticleShouldBe.selectOneFromCategoryPage(phone);
         categoryPage = new CategoryPage(app.driver);
         categoryPage.waitForLoadingCategoryPage();
-        categoryPage.clickOnOneFromArticle(3);
+        categoryPage.clickOnOneFromArticle(1);
         articlePage = new ArticlePage(app.driver);
         articlePage.waitForLoading();
         String nameOfArticleActualOne = articlePage.getTitleOnProduct();
         articlePage.clickOnInDenWarenkorbButton();
         articlePage.closeWindow();
         articlePage.goBack();
-        categoryPage.navigateToPage(pageIndex);
+        categoryPage.waitForLoadingCategoryPage();
         categoryPage.clickOnOneFromArticle(6);
+        articlePage = new ArticlePage(app.driver);
         articlePage.waitForLoading();
+        String nameOfArticleActualTwo = articlePage.getTitleOnProduct();
         articlePage.clickOnInDenWarenkorbButton();
         articlePage.closeWindow();
         articlePage.goBack();
@@ -57,7 +58,9 @@ public class AddProductToWarenkorb extends BaseTest{
         String  nameInWarenkorbOne=meinarenkorbPage.getTitleFromMeinWarenkorbPage(1);
         String  nameInWarenkorbTwo=meinarenkorbPage.getTitleFromMeinWarenkorbPage(2);
         Assert.assertEquals(nameOfArticleActualOne,nameInWarenkorbOne);
-        Assert.assertEquals(nameInWarenkorbTwo,nameInWarenkorbTwo);
+        Assert.assertEquals(nameOfArticleActualTwo,nameInWarenkorbTwo);
+        meinarenkorbPage.removeItemFromKorb();
+        meinarenkorbPage.itemIsLeerText();
 
 
     }

@@ -23,7 +23,6 @@ public class SelectFilterTest extends BaseTest {
         String color = "Weiß";
         String smartwatches = "Smartwatches";
         String höchsterPreis = "Höchster Preis";
-        int articleIndex = 10;
 
         startPage = new StartPage(app.driver);
         startPage.waitForLoadingStartPage();

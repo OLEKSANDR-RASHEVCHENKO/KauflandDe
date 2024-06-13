@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 public class MeinarenkorbPage extends BasePage{
     public MeinarenkorbPage(WebDriver driver) {
         super(driver);
@@ -23,6 +25,8 @@ public class MeinarenkorbPage extends BasePage{
     WebElement jetztZurKasseGehenButton;
     @FindBy(xpath = "//span[normalize-space()='Weiter einkaufen']")
     WebElement weiterEinkaufenButton;
+    @FindBy(xpath = "//h1[normalize-space()='Dein Warenkorb ist noch leer']")
+    WebElement itemLeer;
 
     public void waitForLoadingMeinWarenkorbPage(){
         getWait().forVisibility(header);
@@ -31,8 +35,6 @@ public class MeinarenkorbPage extends BasePage{
         Assert.assertTrue(titleFromProduct.isDisplayed());
         getWait().forVisibility(jetztZurKasseGehenButton);
         Assert.assertTrue(jetztZurKasseGehenButton.isDisplayed());
-        getWait().forVisibility(weiterEinkaufenButton);
-        Assert.assertTrue(weiterEinkaufenButton.isDisplayed());
     }
     public String getTitleFromMeinWarenkorbPage(int indexOfTitle){
         String titleFromProduct = driver.findElement(By.xpath("//div[@class='unit-widget-list']//div["+indexOfTitle+"]//div[2]//div[1]//div[2]//div[1]//h3[1]")).getText();
@@ -51,6 +53,18 @@ public class MeinarenkorbPage extends BasePage{
     }
     public void clickOnweiterEinkaufenButton(){
         weiterEinkaufenButton.click();
+    }
+    public void removeItemFromKorb() throws InterruptedException {
+        List<WebElement> itemToRemove = driver.findElements(By.xpath("//*[name()='svg'][@class='rd-icon unit__remove-icon']"));
+        while (!itemToRemove.isEmpty()) {
+            itemToRemove.get(0).click();
+            Thread.sleep(500);
+            itemToRemove = driver.findElements(By.xpath("//*[name()='svg'][@class='rd-icon unit__remove-icon']"));
+        }
+    }
+    public void itemIsLeerText(){
+        getWait().forVisibility(itemLeer);
+        Assert.assertTrue(itemLeer.isDisplayed());
     }
 
 

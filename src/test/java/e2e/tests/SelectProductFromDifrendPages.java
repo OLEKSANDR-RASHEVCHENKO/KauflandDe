@@ -9,8 +9,6 @@ public class SelectProductFromDifrendPages extends BaseTest{
     LoginPage loginPage;
     CategorysOnArticlePageWitchArticleShouldBe categorysOnArticlePageWitchArticleShouldBe;
     CategoryPage categoryPage;
-    ArticlePage articlePage;
-    MeinarenkorbPage meinarenkorbPage;
 
     @Test
     public void userCanSelectProductsFromDiffrendPages() throws InterruptedException {

@@ -55,6 +55,8 @@ public class ArticlePage extends BasePage{
         zurKasseButton.click();
     }
     public void closeWindow(){
+        getWait().forVisibility(closeWindow);
+        getWait().forClickable(closeWindow);
         closeWindow.click();
     }
     public void goBack(){
